@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido!</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="setOpen(true)">Hola</ion-button>
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Sobre la App</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <p style="text-align: center;">
+          Está aplicacion esta desarrollada por Mateo Sánchez en la Escuela Tecnologica Instituto Tecnico Central para la clase de 
+          Programacion moviles
+          
+        </p>
+        <ion-icon name="happy-outline" style="font-size: 2rem; margin-left: 45%;"></ion-icon>
+      </ion-content>
+
+        <ion-content class="ion-padding">
+          <p style="text-align: center;">
+           Bogotá, Colombia 2024
+          </p>
+        </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

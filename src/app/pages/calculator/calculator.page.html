@@ -1,0 +1,57 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Handjet&family=Josefin+Sans&family=Nunito+Sans:opsz,wght@6..12,200&display=swap"
+  rel="stylesheet"
+/>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calculadora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container">
+    <div class="container__display" id="display-principal">{{display}}</div>
+
+    <div class="container__botonera">
+      <div class="container__botonera__digitos">
+        <div class="container__botonera__digitos__columna">
+          <div class="btn" style="font-size: 60px" (click)="operacion('+')">+</div>
+          <div class="btn" (click)="trigo('sen')">sen</div>
+          <div class="btn" (click)="numbers('7')">7</div>
+          <div class="btn" (click)="numbers('4')">4</div>
+          <div class="btn" (click)="numbers('1')">1</div>
+          <div class="btn" (click)="numbers('.')">.</div>
+        </div>
+
+        <div class="container__botonera__digitos__columna">
+          <div class="btn" style="font-size: 60px" (click)="operacion('-')">-</div>
+          <div class="btn" (click)="trigo('cos')">cos</div>
+          <div class="btn" (click)="numbers('8')">8</div>
+          <div class="btn" (click)="numbers('5')">5</div>
+          <div class="btn" (click)="numbers('2')">2</div>
+          <div class="btn" (click)="numbers('0')" >0</div>
+        </div>
+
+        <div class="container__botonera__digitos__columna">
+          <div class="btn" (click)="operacion('*')">X</div>
+          <div class="btn" (click)="trigo('tan')">tan</div>
+          <div class="btn" (click)="numbers('9')">9</div>
+          <div class="btn" (click)="numbers('6')">6</div>
+          <div class="btn" (click)="numbers('3')">3</div>
+          <div class="btn" style="font-size: 30px" (click)="borrar()">&#60;-</div>
+        </div>
+
+        <div class="container__botonera__digitos__columna">
+          <div class="btn" (click)="operacion('/')">/</div>
+          <div class="btn" (click)="limpiarDisplay()">AC</div>
+          <div class="btn igual" (click)="igual()">=</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+

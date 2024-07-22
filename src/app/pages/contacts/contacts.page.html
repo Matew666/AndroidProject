@@ -1,0 +1,190 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Contactos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    placeholder="Buscar contacto"
+    (ionInput)="searchContact($event)"
+  ></ion-searchbar>
+
+  <ion-item
+    (click)="abrirModal(contacto)"
+    *ngFor="let contacto of searchedContact"
+    id="open-modal"
+  >
+    <img
+      *ngIf="contacto.photo !== ''"
+      [src]="contacto.photo"
+      class="image-icon"
+    />
+    <ion-icon
+      style="margin-right: 10px"
+      name="person-outline"
+      *ngIf="contacto.photo === ''"
+    ></ion-icon>
+    <ion-label (click)="setOpen(true)">{{contacto.nombre}}</ion-label>
+  </ion-item>
+
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Editar contacto</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="setOpen(false)">Cancelar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="contenedorContacto">
+          <img
+            *ngIf="contactoActual.photo !== ''"
+            [src]="contactoActual.photo"
+            class="fotoContacto"
+            (click)="newPhoto(false)"
+          />
+          <ion-icon
+            name="person-outline"
+            class="BImage-icon"
+            *ngIf="contactoActual.photo === ''"
+            (click)="newPhoto(false)"
+          ></ion-icon>
+        </div>
+        <h2>{{contactoActual?.nombre}}</h2>
+
+        <div class="botonesContacto">
+          <button (click)="llamar()">
+            <ion-icon name="call-outline"></ion-icon>
+          </button>
+          <button (click)="sms()">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+          </button>
+          <button (click)="correo()">
+            <ion-icon name="mail-outline"></ion-icon>
+          </button>
+          <p>Llamar</p>
+          <p>Mensaje</p>
+          <p>Correo</p>
+        </div>
+        <br />
+        <ion-label></ion-label>
+
+        <ion-content class="ion-padding">
+          <ion-item>
+            <ion-icon name="person-outline"></ion-icon>*
+            <ion-input
+              placeholder="Nombre"
+              [(ngModel)]="nombreInput"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="call-outline"></ion-icon>*
+            <ion-input
+              type="tel"
+              [(ngModel)]="telefonoInput"
+              placeholder="000-000-0000"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-input
+              type="email"
+              [(ngModel)]="mailInput"
+              placeholder="ejemplo@dominio.com"
+            ></ion-input>
+          </ion-item>
+
+          <ion-button
+            color="success"
+            class="ion-margin-vertical"
+            (click)="guardarCambios()"
+            >Guardar</ion-button
+          >
+
+          <ion-button
+            color="danger"
+            class="ion-margin-vertical"
+            id="present-alert"
+            >Eliminar</ion-button
+          >
+
+          <ion-alert
+            trigger="present-alert"
+            header="¿Eliminar contacto definitivamente?"
+            [buttons]="alertButtons"
+          ></ion-alert>
+        </ion-content>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal para crear un contacto nuevo -->
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="abrirNuevoContacto(true)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal [isOpen]="anadirContacto">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title style="text-align: center">Añadir contacto</ion-title>
+          <ion-buttons slot="start">
+            <ion-button (click)="abrirNuevoContacto(false)">
+              <ion-icon name="close-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="agregarContacto()">
+              <ion-icon name="checkmark-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <div class="contenedorContacto">
+          <ion-icon
+            name="person-outline"
+            class="BImage-icon"
+            *ngIf="newContactPhotoSrc === ''"
+            (click)="newPhoto(true)"
+          ></ion-icon>
+          <img
+            *ngIf="newContactPhotoSrc !== ''"
+            [src]="newContactPhotoSrc"
+            class="fotoContacto"
+            (click)="newPhoto(true)"
+          />
+        </div>
+
+        <ion-item>
+          <ion-icon name="person-outline"></ion-icon>*
+          <ion-input placeholder="Nombre" [(ngModel)]="nombreInput"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="call-outline"></ion-icon>*
+          <ion-input
+            type="tel"
+            [(ngModel)]="telefonoInput"
+            placeholder="000-000-0000"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="mail-outline"></ion-icon>
+          <ion-input
+            type="email"
+            [(ngModel)]="mailInput"
+            placeholder="ejemplo@dominio.com"
+          ></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

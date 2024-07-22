@@ -1,0 +1,109 @@
+<div class="principal-container">
+  <img src="/assets/logo.svg" alt="Logo" class="logo" />
+
+  <div class="child-containers">
+    <div class="translate-container">
+      <div class="languages-options">
+        <input
+          type="radio"
+          id="language1"
+          name="s_language"
+          class="o_language"
+          checked
+        />
+        <label for="language1">{{languageLabel}}</label>
+
+        <div class="dropdown">
+          <button class="dropbtn">Select language</button>
+          <span class="material-symbols-outlined" id="expand">
+            expand_more
+          </span>
+          <div class="dropdown-content">
+            <a *ngFor="let language of isoLanguages" (click)="selectLanguage(language.code, language.voice, language.name)">{{ language.name }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="translate-content">
+        <textarea
+          type="text"
+          placeholder="Texto a traducir"
+          class="translate-text"
+          rows="1"
+          maxlength="500"
+          [(ngModel)]="textInput"
+          (ngModelChange)="wordCounter()"
+        ></textarea>
+
+        <p class="word-counter">{{characters}}/500</p>
+
+        <div class="btn-container">
+          <button class="square-btn" id="open-loading" (click)="playText(textInput, 0.5)">
+            <span class="material-symbols-outlined"> volume_up </span>
+          </button>
+          <button class="square-btn" (click)="copyText(textInput)">
+            <span class="material-symbols-outlined"> stack </span>
+          </button>
+          <button class="translate-btn" (click)="llenarData()">
+            <span class="material-symbols-outlined"> translate </span>
+            <span> Translate </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjeta derecha -->
+    <div class="translated-container">
+      <div class="languages-options">
+        <input
+          type="radio"
+          id="language4"
+          name="s_language1"
+          class="o_language"
+          checked
+        />
+        <label for="language4">{{languageLabel1}}</label>
+
+        <div class="dropdown">
+          <button class="dropbtn">Select language</button>
+          <span class="material-symbols-outlined" id="expand">
+            expand_more
+          </span>
+          <div class="dropdown-content">
+            <a *ngFor="let language of isoLanguages" (click)="destinationLanguage(language.code, language.voice, language.name)">{{ language.name }}</a>
+          </div>
+        </div>
+        <button class="square-btn" id="alternate" (click)="alternateLanguage()">
+          <span class="material-symbols-outlined"> sync_alt </span>
+        </button>
+      </div>
+
+      <div class="separator"></div>
+
+      <div class="translate-content">
+        <textarea
+          type="text"
+          placeholder="Traduccion"
+          class="translate-text"
+          rows="1"
+          disabled
+        >{{translatedText}}</textarea>
+
+        <p class="word-counter"></p>
+
+        <div class="btn-container">
+          <button class="square-btn" (click)="playTraduction(translatedText, 0.5)">
+            <span class="material-symbols-outlined"> volume_up </span>
+          </button>
+          <button class="square-btn">
+            <span class="material-symbols-outlined" (click)="copyText(translatedText)"> stack </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,61 @@
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: #884ea0;
+    margin:0;
+    font-family: "Handjet", sans-serif;
+    overflow: hidden;
+    padding: 3% 3% 0 0;
+  
+    &__display {
+      height: 90px;
+      color: #fff;
+      background-color: #000;
+      border: #76448b solid 10px;
+      margin: 0px 20px 20px 20px;
+      font-size: 56px;
+      text-align: right;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px #262626;
+      overflow: hidden;
+    }
+  
+    &__botonera {
+      overflow: hidden;
+  
+      &__digitos {
+        margin: 0 10px;
+        display: flex;
+  
+        &__columna{
+          flex: 1;
+          margin: 0 5px;
+        }
+  
+        .igual {
+          height: 65%;
+        }
+      }
+    }
+  }
+  
+  .btn {
+    display: flex;
+    background-color: #76448b;
+    margin: 5px;
+    height: 75px;
+    width: 100%;
+    font-size: 40px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #262626;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn:hover {
+    background-color: #5e376f;
+  }
